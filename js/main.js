@@ -70,3 +70,20 @@ function toggleCommentButton(postId) // easey to solve after solving function 3
 
   return button; // after confirming it exists and manually toggling
 }
+
+// function 5
+let deleteChildElements = (parentElement) => 
+{
+  // thanks to https://stackoverflow.com/questions/384286/how-do-you-check-if-a-javascript-object-is-a-dom-object
+  if(parentElement === undefined || !(parentElement instanceof Element)) // if a parameter is not an HTML element
+    return undefined;
+  
+  let child_var = parentElement.lastElementChild;
+
+  while(child_var)
+  {
+    parentElement.removeChild(parentElement.lastElementChild);
+    child_var = parentElement.lastElementChild;
+  }
+  return parentElement;
+}
