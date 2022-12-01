@@ -171,4 +171,28 @@ let getUsers = async() =>
   }
 }
 
+// function 11
+let getUserPosts = async(user_id) =>
+{
+  if(!user_id)
+    return;
+  try
+  {
+    let arrPost = [];
+    const response = await fetch("https://jsonplaceholder.typicode.com/posts");
+    const jsonPosts = await response.json();
+    jsonPosts.forEach(post => 
+    {
+      if(post.userId === user_id)
+      {
+        arrPost.push(post);
+      }
+    });
+    return arrPost;
+  }
+  catch(e)
+  {
+    console.log(e);
+  }
+}
 
