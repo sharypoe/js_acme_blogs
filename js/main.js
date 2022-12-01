@@ -87,3 +87,88 @@ let deleteChildElements = (parentElement) =>
   }
   return parentElement;
 }
+
+// function 6
+function addButtonListeners()
+{
+  let buttons = document.querySelectorAll("main button");
+  if(buttons === undefined || buttons === null)
+    return undefined;
+  buttons.forEach(button => 
+  {
+    let postID = button.dataset.postId;
+    button.addEventListener("click", function(e){toggleComments(e, postID)}, false);
+  });
+  return buttons;
+}
+
+function toggleComments(e = 0, postID = 0)
+{
+}
+
+// function 7
+// refer to function 6 in order to complete it
+function removeButtonListeners()
+{
+  let buttons = document.querySelectorAll("main button");
+  if(buttons === undefined || buttons === null)
+    return undefined;
+  
+  buttons.forEach(button => 
+  {
+    let postID = button.dataset.postId;
+    button.removeEventListener("click",  function(e){toggleComments(e, postID)}, true);
+  });
+  return buttons;
+}
+
+// function 8
+function createComments(json_comments)   // uses createElemWithText
+{
+  if(!json_comments) // interesting implementation as well
+    return;
+
+  const fragment = document.createDocumentFragment();
+  json_comments.forEach(comment => 
+  {
+    let article = document.createElement("article");
+    let h3 = createElemWithText("h3", comment.name);
+    let p1 = createElemWithText("p", comment.body);
+    let p2 = createElemWithText("p", `From: ${comment.email}`);
+    article.append(h3, p1, p2);
+    fragment.appendChild(article);
+  });
+  return fragment;
+}
+
+// function 9
+let populateSelectMenu = function(json_data)   // depends on createSelectOptions
+{
+  if(!json_data)
+    return;
+
+  const menuElement = document.querySelector("#selectMenu");
+  const option_elems = createSelectOptions(json_data);
+  option_elems.forEach(option => 
+  {
+    menuElement.append(option);
+  });
+  return menuElement;
+}
+
+// (these functions use Async/Await)
+// function 10 
+let getUsers = async() => 
+{
+  try // need to use try/catch block
+  {
+    const response = await fetch("https://jsonplaceholder.typicode.com/users");
+    const jsonUsers = await response.json();
+    return jsonUsers;
+  }
+  catch(e){
+    console.log(e);
+  }
+}
+
+
