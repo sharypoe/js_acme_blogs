@@ -314,3 +314,16 @@ function toggleComments(event, postId)
   let section = toggleCommentSection(postId);
   return [section,  button];
 }
+
+// function 18
+async function refreshPosts(json_data)
+{
+  if(!json_data)
+    return;
+  let main = document.querySelector("main");
+  let removeButtons = removeButtonListeners();
+  main = deleteChildElements(main);
+  let fragment = await displayPosts(json_data);
+  let addButtons = addButtonListeners();
+  return [removeButtons, main, fragment, addButtons];
+}
