@@ -289,7 +289,7 @@ let createPosts = async(posts_json_data) =>
     button.dataset.postId = post.id;
     
     const section = await displayComments(post.id);
-    
+
     article.append(h2, p1, p2, p3, p4, button, section);
 
     article.append(section);
@@ -298,4 +298,12 @@ let createPosts = async(posts_json_data) =>
   return fragment;
 }
 
+// function 16
+async function displayPosts(posts)
+{
+  let main = document.querySelector("main");
+  let element = !posts? document.querySelector("p") : await createPosts(posts); // p refers to the default paragraph
+  main.append(element);
+  return element;
+}
 
