@@ -327,3 +327,19 @@ async function refreshPosts(json_data)
   let addButtons = addButtonListeners();
   return [removeButtons, main, fragment, addButtons];
 }
+
+// function 19
+async function selectMenuChangeEventHandler(event)
+{
+  if(!event)
+      return;
+
+  document.querySelector("#selectMenu").disabled = true; // disables it
+
+  let userId = event?.target?.value || 1;
+  let posts = await getUserPosts(userId);
+  let refreshPostsArray = await refreshPosts(posts);
+
+  document.querySelector("#selectMenu").disabled = false; // enables it
+  return [userId, posts, refreshPostsArray];
+}
