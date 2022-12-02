@@ -196,3 +196,48 @@ let getUserPosts = async(user_id) =>
   }
 }
 
+// function 12
+let getUser = async(user_id) => 
+{
+  if(!user_id)
+    return;
+  try
+  {
+    let user_obj = {};
+    let users = await getUsers();
+    users.forEach(user => 
+    {
+      if(user.id === user_id)
+        user_obj = user;
+    });
+    return user_obj;
+  }
+  catch(e)
+  {
+    console.log(e);
+  }
+}
+
+// function 13
+let getPostComments = async(post_id) => 
+{
+  if(! post_id)
+    return;
+  try
+  {
+    let comments = [];
+    const response = await fetch("https://jsonplaceholder.typicode.com/comments");
+    const jsonComments = await response.json();
+    jsonComments.forEach(comment => 
+    {
+      if(comment.postId === post_id)
+        comments.push(comment);
+    });
+    return comments;
+  }
+  catch (e)
+  {
+    console.log(e);
+  }
+}
+
