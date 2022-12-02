@@ -241,3 +241,21 @@ let getPostComments = async(post_id) =>
   }
 }
 
+// (these functions will depend on functions 10-13)
+
+// function 14
+let displayComments = async(post_id) =>
+{
+  if(!post_id)
+    return;
+  let section_elem = document.createElement("section");
+  section_elem.dataset.postId = post_id;
+  section_elem.classList.add("comments", "hide");
+  let comments = await getPostComments(post_id);
+  let fragment = createComments(comments);
+  section_elem.append(fragment);
+  return section_elem;
+}
+
+
+
