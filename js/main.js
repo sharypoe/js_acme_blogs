@@ -102,10 +102,6 @@ function addButtonListeners()
   return buttons;
 }
 
-function toggleComments(e = 0, postID = 0)
-{
-}
-
 // function 7
 // refer to function 6 in order to complete it
 function removeButtonListeners()
@@ -117,7 +113,7 @@ function removeButtonListeners()
   buttons.forEach(button => 
   {
     let postID = button.dataset.postId;
-    button.removeEventListener("click",  function(e){toggleComments(e, postID)}, false);
+    button.removeEventListener("click", function(e){toggleComments(e, postID)}, false);
   });
   return buttons;
 }
