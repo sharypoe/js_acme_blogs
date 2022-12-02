@@ -257,5 +257,45 @@ let displayComments = async(post_id) =>
   return section_elem;
 }
 
+// function 15
+let createPosts = async(posts_json_data) => 
+{
+  if(!posts_json_data)
+    return;
+
+  const fragment = document.createDocumentFragment();
+  for(const post of posts_json_data)
+  {
+    let article = document.createElement("article");
+
+    let h2 = document.createElement("h2");
+    h2.textContent = post.title;
+
+    let p1  = document.createElement("p");
+    p1.textContent = post.body;
+
+    let p2 = document.createElement("p");
+    p2.textContent = `Post ID: ${post.id}`;
+
+    const author = await getUser(post.userId);
+    let p3 = document.createElement("p");
+    p3.textContent = `Author: ${author.name} with ${author.company.name}`;
+
+    let p4 = document.createElement("p");
+    p4.textContent = author.company.catchPhrase;
+
+    let button = document.createElement("button");
+    button.textContent = "Show Comments";
+    button.dataset.postId = post.id;
+    
+    const section = await displayComments(post.id);
+    
+    article.append(h2, p1, p2, p3, p4, button, section);
+
+    article.append(section);
+    fragment.append(article);
+  }
+  return fragment;
+}
 
 
