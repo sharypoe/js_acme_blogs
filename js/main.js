@@ -37,7 +37,7 @@ let toggleCommentSection = function(postId)
     return;
 
   // important link: https://bobbyhadz.com/blog/javascript-get-element-by-attribute
-  let section = document.querySelector(`[data-post-id="${postId}"]`); // this was difficult to find
+  let section = document.querySelector(`section[data-post-id="${postId}"]`); // this was difficult to find
   // translates to: get the element whose attribute === post_id
 
   if(typeof(section) !== undefined && section != null) // checking if it exists
@@ -57,7 +57,7 @@ function toggleCommentButton(postId) // easey to solve after solving function 3
     return;
 
   // important link: https://bobbyhadz.com/blog/javascript-get-element-by-attribute
-  let button = document.querySelector(`[data-post-id="${postId}"]`); // this was difficult to find
+  let button = document.querySelector(`button[data-post-id="${postId}"]`); // this was difficult to find
   // translates to: get the element whose attribute === post_id
 
   if(typeof(button) !== undefined && button != null) // checking if it exists
@@ -314,7 +314,7 @@ function toggleComments(event, postId)
   if(!event || !postId)
     return;
   event.target.listener = true;
-  let BUTTON = toggleCommentButton(postId);
-  let SECTION = toggleCommentSection(postId);
-  return [SECTION,  BUTTON];
+  let button = toggleCommentButton(postId);
+  let section = toggleCommentSection(postId);
+  return [section,  button];
 }
