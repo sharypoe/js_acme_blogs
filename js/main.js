@@ -33,8 +33,8 @@ function createSelectOptions(json_data)
 // function 3
 let toggleCommentSection = function(postId)
 {
-  if (postId === undefined)
-    return undefined;
+  if (postId == null || postId == undefined)
+    return;
 
   // important link: https://bobbyhadz.com/blog/javascript-get-element-by-attribute
   let section = document.querySelector(`[data-post-id="${postId}"]`); // this was difficult to find
@@ -53,8 +53,8 @@ let toggleCommentSection = function(postId)
 // function 4
 function toggleCommentButton(postId) // easey to solve after solving function 3
 {
-  if (postId === undefined)
-  return undefined;
+  if (postId == null || postId == undefined)
+    return;
 
   // important link: https://bobbyhadz.com/blog/javascript-get-element-by-attribute
   let button = document.querySelector(`[data-post-id="${postId}"]`); // this was difficult to find
@@ -117,7 +117,7 @@ function removeButtonListeners()
   buttons.forEach(button => 
   {
     let postID = button.dataset.postId;
-    button.removeEventListener("click",  function(e){toggleComments(e, postID)}, true);
+    button.removeEventListener("click",  function(e){toggleComments(e, postID)}, false);
   });
   return buttons;
 }
@@ -307,3 +307,14 @@ async function displayPosts(posts)
   return element;
 }
 
+// the last functions: procedural functions
+// function 17
+function toggleComments(event, postId)
+{
+  if(!event || !postId)
+    return;
+  event.target.listener = true;
+  let BUTTON = toggleCommentButton(postId);
+  let SECTION = toggleCommentSection(postId);
+  return [SECTION,  BUTTON];
+}
