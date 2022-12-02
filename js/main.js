@@ -343,3 +343,12 @@ async function selectMenuChangeEventHandler(event)
   document.querySelector("#selectMenu").disabled = false; // enables it
   return [userId, posts, refreshPostsArray];
 }
+
+// function 20
+async function initPage()
+{
+  let users = await getUsers();
+  let select = populateSelectMenu(users);
+  return [users, select];
+}
+
