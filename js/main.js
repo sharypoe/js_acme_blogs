@@ -357,5 +357,5 @@ let initApp = () =>
 {
   initPage();
   const selectMenu = document.querySelector("#selectMenu");
-  selectMenu.addEventListener("change", selectMenuChangeEventHandler(e), false);
+  selectMenu.addEventListener("change", (event) => selectMenuChangeEventHandler(event), false);
 }
