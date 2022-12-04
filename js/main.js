@@ -179,7 +179,7 @@ let getUserPosts = async(user_id) =>
     const jsonPosts = await response.json();
     jsonPosts.forEach(post => 
     {
-      if(post.userId === user_id)
+      if(post.userId == user_id)
       {
         arrPost.push(post);
       }
