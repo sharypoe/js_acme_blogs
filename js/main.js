@@ -295,13 +295,23 @@ let createPosts = async(posts_json_data) =>
 }
 
 // function 16
-async function displayPosts(posts)
-{
-  let main = document.querySelector("main");
-  let element = !posts? document.querySelector("p") : await createPosts(posts); // p refers to the default paragraph
-  main.append(element);
-  return element;
-}
+const displayPosts = async (posts) => 
+{ 
+  let main_ = document.querySelector("main");    
+  let element;
+  if(posts)
+  {
+    element =  await createPosts(posts);
+  } 
+  else
+  {
+    element = document.createElement("p");
+    element.textContent = "Select an Employee to display their posts.";
+    element.className = "default-text";
+  } 
+  main_.append(element);     
+  return element; 
+}   
 
 // the last functions: procedural functions
 // function 17
@@ -359,3 +369,5 @@ let initApp = () =>
   const selectMenu = document.querySelector("#selectMenu");
   selectMenu.addEventListener("change", (event) => selectMenuChangeEventHandler(event), false);
 }
+
+document.addEventListener("DOMContentLoaded", initApp);
