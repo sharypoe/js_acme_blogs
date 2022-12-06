@@ -3,7 +3,7 @@ let createElemWithText = (element_name = "p", text = "", class_name) =>
 {
   const element = document.createElement(element_name);
   element.textContent = text;
-  if(class_name !== undefined) // interesting. Only add a class name if it is available.
+  if(class_name) // interesting. Only add a class name if it is available.
   {
     element.classList.add(class_name);
   }
@@ -14,8 +14,8 @@ let createElemWithText = (element_name = "p", text = "", class_name) =>
 function createSelectOptions(json_data)
 {
   // if undefined
-  if(json_data === undefined)
-    return undefined;
+  if(!json_data)
+    return;
 
   let arr = [];
 
@@ -33,12 +33,12 @@ function createSelectOptions(json_data)
 // function 3
 let toggleCommentSection = function(postId)
 {
-  if (postId == null || postId == undefined)
+  if (!postId)
     return;
 
   // important link: https://bobbyhadz.com/blog/javascript-get-element-by-attribute
   let section = document.querySelector(`section[data-post-id="${postId}"]`); // this was difficult to find
-  // translates to: get the element whose attribute === post_id
+  // translates to: get the element whose attribute == post_id
 
   if(typeof(section) !== undefined && section != null) // checking if it exists
   {
@@ -53,17 +53,17 @@ let toggleCommentSection = function(postId)
 // function 4
 function toggleCommentButton(postId) // easey to solve after solving function 3
 {
-  if (postId == null || postId == undefined)
+  if (!postId)
     return;
 
   // important link: https://bobbyhadz.com/blog/javascript-get-element-by-attribute
   let button = document.querySelector(`button[data-post-id="${postId}"]`); // this was difficult to find
-  // translates to: get the element whose attribute === post_id
+  // translates to: get the element whose attribute == post_id
 
   if(typeof(button) !== undefined && button != null) // checking if it exists
   {
                                             // if true        // if false
-    button.textContent === "Show Comments"? button.textContent = "Hide Comments" : button.textContent = "Show Comments";
+    button.textContent == "Show Comments"? button.textContent = "Hide Comments" : button.textContent = "Show Comments";
   }
   else
     return null;
@@ -75,7 +75,7 @@ function toggleCommentButton(postId) // easey to solve after solving function 3
 let deleteChildElements = (parentElement) => 
 {
   // thanks to https://stackoverflow.com/questions/384286/how-do-you-check-if-a-javascript-object-is-a-dom-object
-  if(parentElement === undefined || !(parentElement instanceof Element)) // if a parameter is not an HTML element
+  if(parentElement == undefined || !(parentElement instanceof Element)) // if a parameter is not an HTML element
     return undefined;
   
   let child_var = parentElement.lastElementChild;
@@ -92,7 +92,7 @@ let deleteChildElements = (parentElement) =>
 function addButtonListeners()
 {
   let buttons = document.querySelectorAll("main button");
-  if(buttons === undefined || buttons === null)
+  if(buttons == undefined || buttons == null)
     return undefined;
   buttons.forEach(button => 
   {
@@ -107,7 +107,7 @@ function addButtonListeners()
 function removeButtonListeners()
 {
   let buttons = document.querySelectorAll("main button");
-  if(buttons === undefined || buttons === null)
+  if(buttons == undefined || buttons == null)
     return undefined;
   
   buttons.forEach(button => 
@@ -203,7 +203,7 @@ let getUser = async(user_id) =>
     let users = await getUsers();
     users.forEach(user => 
     {
-      if(user.id === user_id)
+      if(user.id == user_id)
         user_obj = user;
     });
     return user_obj;
@@ -226,7 +226,7 @@ let getPostComments = async(post_id) =>
     const jsonComments = await response.json();
     jsonComments.forEach(comment => 
     {
-      if(comment.postId === post_id)
+      if(comment.postId == post_id)
         comments.push(comment);
     });
     return comments;
