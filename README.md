@@ -4,6 +4,8 @@
 
 **Start by clicking the Remix on Glitch button above.**
 
+[![Netlify Status](https://api.netlify.com/api/v1/badges/9c6bb767-a922-4a5c-80ef-f6c812ed2bda/deploy-status)](https://app.netlify.com/sites/sparkly-tulumba-c2422f/deploys)
+
 _Once you are working with your own copy of the project on Glitch..._
 
 **Follow the directions available in Blackboard** 
